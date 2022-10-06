@@ -23,6 +23,7 @@ from country.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('country.urls'))
+
 ]
 
 if settings.DEBUG:
