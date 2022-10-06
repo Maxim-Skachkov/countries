@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -21,3 +22,12 @@ class Country(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     time_updated = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.country_name
+
+
+class Comment(models.Model):
+    comment_text = models.TextField()
+    user = models.ForeignKey(User, default='Anon', on_delete=models.SET_DEFAULT)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
