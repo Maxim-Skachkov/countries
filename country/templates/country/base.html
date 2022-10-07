@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% block mainmenu %}
+        <ul>
+          {% for elem in menu %}
+              <li>{{ elem.name }}</li>
+          {% endfor %}
+        </ul>
+    {% endblock %}
+    {% block conti %}
+        <ul>
+          {% for c in continents %}
+              <li>{{ c.contitent_name }}</li>
+          {% endfor %}
+        </ul>
+    {% endblock conti %}
+
+    {%block content %}
+    {% endblock %}
+
+</body>
+</html>

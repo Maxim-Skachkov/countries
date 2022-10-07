@@ -18,9 +18,10 @@ from django.urls import path, include
 from country.views import *
 
 urlpatterns = [
-    path('', index, name='country'),
-    path('country/<slug:country_id>/', country),
-    path('about', about, name='about'),
+    path('', index, name='homepage'),
+    path('continent/<slug:continent_sluggy>/', continent),
+    path('about/', about, name='about'),
+    path('contacts/', contacts, name='contacts'),
 ]
 
 

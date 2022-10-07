@@ -1,0 +1,9 @@
+{% extends 'country/base.html' %}
+
+{% block title %}{{ title }} {% endblock %}
+{% block content %}
+<h1>continents</h1>
+{% for c in countries_list %}
+<p>Страна {{c.country_name}}</p>
+{% endfor %}
+{% endblock %}
