@@ -44,6 +44,8 @@ td.block-conti ul li:hover {
 
 td.mt-center {
 	padding: 50px 50px 50px 50px;
+    background-image: url(../images/karta-mira.jpg);
+    background-size: contain;
 }
 
 table.footer {
@@ -52,5 +54,9 @@ box-sizing: border-box;
     height: 50px;
     text-align: center;
     background: #535447;
+    color: #ad8c63;
+}
+
+h1.table-head {
     color: #ad8c63;
 }

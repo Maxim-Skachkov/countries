@@ -19,9 +19,10 @@ from country.views import *
 
 urlpatterns = [
     path('', index, name='homepage'),
-    path('continent/<slug:continent_sluggy>/', continent),
+    #path('continent/<slug:continent_sluggy>/', continent),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
+    path('country/<slug:cntry>', curr_country, name='country')
 ]
 
 

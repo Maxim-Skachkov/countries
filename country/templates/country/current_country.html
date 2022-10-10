@@ -1,0 +1,7 @@
+{% extends 'country/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+<h1 class="table-head">{{ current_country.country_name }}</h1>
+<p>{{ current_country.country_description | linebreaks }}</p>
+{% endblock %}

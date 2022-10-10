@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -25,6 +27,9 @@ class Country(models.Model):
 
     def __str__(self):
         return self.country_name
+
+    def get_absolute_url(self):
+        return reverse('country', kwargs={'cntry': self.country_slug})
 
 
 class Comment(models.Model):

@@ -14,7 +14,7 @@
         <tr class="table-head">
             {% for m in menu %}
             <td class="table-head">
-                <a class="table-head" href="#">{{ m.name }}</a>
+                <a class="table-head" href="{% url m.link %}">{{ m.name }}</a>
             </td>
             {% endfor %}
         </tr>
