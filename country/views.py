@@ -4,24 +4,29 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from country.models import *
 menu = [
-    {'name': "Главная страница", 'link': "homepage"},
+    {'name': "Главная страница", 'link': ''},
     {'name': "О сайте", 'link': "about"},
     {'name': "Контакты", 'link': "contacts"},
 ]
+continents = Contitent.objects.all()
+cntries = Country.objects.all()
 
 
 def index(request):
-    continents = Contitent.objects.all()
     context = {"title": "Страны всего мира",
                'menu': menu,
                "continents": continents,
+               'cntries': cntries,
                }
     return render(request, "country/index.html", context)
 
 
 def about(request):
     context = {"title": "О сайте",
-               'menu': menu}
+               'menu': menu,
+               "continents": continents,
+               'cntries': cntries,
+               }
     return render(request, "country/about.html", context)
 
 

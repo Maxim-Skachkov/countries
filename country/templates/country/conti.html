@@ -1,6 +1,16 @@
 {% extends 'country/base.html' %}
 
 {% block title %}{{ title }} {% endblock %}
+
+{% block leftmenu %}
+    <ul>
+        <li class="selected"><b>Все континенты</b></li>
+      {% for c in continents %}
+          <li>{{ c.contitent_name }}</li>
+      {% endfor %}
+    </ul>
+{% endblock %}
+
 {% block content %}
 <h1>continents</h1>
 {% for c in countries_list %}
