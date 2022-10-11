@@ -2,18 +2,13 @@
 
 {% block title %}{{ title }} {% endblock %}
 
-{% block leftmenu %}
-    <ul>
-        <li class="selected"><b>Все континенты</b></li>
-      {% for c in continents %}
-          <li>{{ c.contitent_name }}</li>
-      {% endfor %}
-    </ul>
-{% endblock %}
+
 
 {% block content %}
-<h1>continents</h1>
+
 {% for c in countries_list %}
-<p>Страна {{c.country_name}}</p>
+<h1 class="table-head">{{ c.country_name }}</h1>
+<p>{{ c.country_description | linebreaksbr }}</p><br><hr><br>
+
 {% endfor %}
 {% endblock %}

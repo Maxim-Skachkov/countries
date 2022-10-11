@@ -12,6 +12,9 @@ class Contitent(models.Model):
     def __str__(self):
         return self.contitent_name
 
+    def get_absolute_url(self):
+        return reverse('continent', kwargs={'continent_sluggy': self.contitent_slug})
+
 class Country(models.Model):
     country_name = models.CharField(max_length=100)
     country_population = models.PositiveIntegerField()

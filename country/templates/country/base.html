@@ -23,8 +23,14 @@
     <table class="main-table">
         <tr class="main-table">
             <td class="block-conti">
-                    {% block leftmenu %}
-                    {% endblock %}
+                {% block leftmenu %}
+                    <ul>
+                        <li class="selected"><b><a class="table-head" href="{% url 'homepage' %}">Все континенты</></b></li>
+                      {% for c in continents %}
+                          <li><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</></li>
+                      {% endfor %}
+                    </ul>
+                {% endblock %}
             </td>
             <td class="mt-center">
                 {% block content %}
