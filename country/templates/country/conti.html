@@ -7,7 +7,7 @@
 {% block content %}
 
 {% for c in countries_list %}
-<h1 class="table-head">{{ c.country_name }}</h1>
+<a class="table-head" href="{{ c.get_absolute_url }}"><h1>{{ c.country_name }}</h1></a>
 <p>{{ c.country_description | linebreaksbr }}</p><br><hr><br>
 
 {% endfor %}

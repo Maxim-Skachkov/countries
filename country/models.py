@@ -6,8 +6,13 @@ from django.urls import reverse
 # Create your models here.
 
 class Contitent(models.Model):
-    contitent_name = models.CharField(max_length=50)
-    contitent_slug = models.CharField(max_length=50)
+    contitent_name = models.CharField(max_length=50, verbose_name='Континент')
+    contitent_slug = models.CharField(max_length=50, verbose_name='slug')
+
+    class Meta:
+        verbose_name = 'Континенты'
+        verbose_name_plural = 'Континенты'
+        ordering = ['contitent_name']
 
     def __str__(self):
         return self.contitent_name
@@ -25,8 +30,13 @@ class Country(models.Model):
     country_photo = models.ImageField(upload_to="photos/borders/%Y/%m/%d/")
     country_slug = models.CharField(max_length=100)
     time_created = models.DateTimeField(auto_now_add=True)
-    time_updated = models.DateTimeField(auto_now=True)
+    time_updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     is_published = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Страны'
+        verbose_name_plural = 'Страны'
+        ordering = ['country_name']
 
     def __str__(self):
         return self.country_name

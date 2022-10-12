@@ -3,5 +3,8 @@
 {% block title %} {{ title }} {% endblock %}
 {% block content %}
 <h1 class="table-head">{{ current_country.country_name }}</h1>
+{% if current_country.country_flag %}
+<img src="{{ current_country.country_flag.url }}">
+{% endif %}
 <p>{{ current_country.country_description | linebreaks }}</p>
 {% endblock %}
