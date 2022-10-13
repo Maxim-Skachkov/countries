@@ -38,7 +38,7 @@ td.block-conti ul {
     list-style: none;
     line-height: 40px;
 }
-td.block-conti ul li:hover {
+td.block-conti ul li.selected:hover {
     color: #be9d74;
 }
 

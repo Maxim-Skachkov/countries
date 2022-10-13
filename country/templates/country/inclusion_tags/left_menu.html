@@ -1,0 +1,7 @@
+{% for c in conties %}
+{% if c.id == cont_id %}
+  <li>{{ c.contitent_name }}</li>
+{% else %}
+  <li><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></li>
+{% endif %}
+{% endfor %}

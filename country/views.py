@@ -7,6 +7,7 @@ from country.models import *
 
 def index(request):
     context = {"title": "Страны всего мира",
+               "cont_id": 0,
                }
     return render(request, "country/index.html", context)
 
@@ -29,6 +30,8 @@ def continent(request, continent_sluggy):
     context = {
                 "title": current_continent.contitent_name,
                 "countries_list": countries_list,
+                "continent_slug": current_continent.contitent_slug,
+                "cont_id": current_continent.pk,
                }
     return render(request, "country/conti.html", context)
 
