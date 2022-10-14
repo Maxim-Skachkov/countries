@@ -28,7 +28,7 @@ class Country(models.Model):
     country_continent = models.ForeignKey(Contitent, default='-', on_delete=models.SET_DEFAULT)
     country_flag = models.ImageField(upload_to="photos/flags/%Y/%m/%d/")
     country_photo = models.ImageField(upload_to="photos/borders/%Y/%m/%d/")
-    country_slug = models.CharField(max_length=100)
+    country_slug = models.CharField(max_length=100, unique=True)
     time_created = models.DateTimeField(auto_now_add=True)
     time_updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
     is_published = models.BooleanField(default=False)

@@ -9,11 +9,12 @@ class CountryAdmin(admin.ModelAdmin):
     list_display_links = ('country_name',)
     search_fields = ('country_name',)
     list_editable = ('is_published',)
+    prepopulated_fields = {'country_slug': ('country_name',)}
 
 
 class ContinentAdmin(admin.ModelAdmin):
     list_display = ('contitent_name', 'contitent_slug')
-
+    prepopulated_fields = {'contitent_slug': ('contitent_name',)}
 
 admin.site.register(Country, CountryAdmin)
 admin.site.register(Contitent, ContinentAdmin)
