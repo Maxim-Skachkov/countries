@@ -7,6 +7,7 @@ register = template.Library()
 def get_menu():
     menu_list = [
     {'name': "Главная страница", 'link': 'homepage'},
+    {'name': "Добавить статью", 'link': 'new_article'},
     {'name': "О сайте", 'link': "about"},
     {'name': "Контакты", 'link': "contacts"},
 ]

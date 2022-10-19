@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
+from country.forms import *
 # Create your views here.
 from country.models import *
 
@@ -43,3 +44,17 @@ def curr_country(request, cntry):
         "current_country": current_country,
     }
     return render(request, "country/current_country.html", context)
+
+
+def new_article(request):
+    if request.method == "POST":
+        form = AddCountry(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('homepage')
+    else:
+        form = AddCountry()
+    context = {"title": "Добавление статьи",
+               "form": form,
+               }
+    return render(request, "country/new_article.html", context)

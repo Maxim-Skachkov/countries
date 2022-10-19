@@ -22,7 +22,8 @@ urlpatterns = [
     path('continent/<slug:continent_sluggy>/', continent, name='continent'),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
-    path('country/<slug:cntry>', curr_country, name='country')
+    path('country/<slug:cntry>', curr_country, name='country'),
+    path('new_article', new_article, name='new_article')
 ]
 
 
