@@ -18,12 +18,12 @@ from django.urls import path, include
 from country.views import *
 
 urlpatterns = [
-    path('', index, name='homepage'),
-    path('continent/<slug:continent_sluggy>/', continent, name='continent'),
+    path('', SiteHomepage.as_view(), name='homepage'),
+    path('continent/<slug:continent_sluggy>/', Continent.as_view(), name='continent'),
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
-    path('country/<slug:cntry>', curr_country, name='country'),
-    path('new_article', new_article, name='new_article')
+    path('country/<slug:cntry>', ShowCountry.as_view(), name='country'),
+    path('new_article', NewArticle.as_view(), name='new_article')
 ]
 
 

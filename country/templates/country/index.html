@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    {% for c in cntries %}
+    {% for c in object_list %}
     <a class="table-head" href="{{ c.get_absolute_url }}"><h1>{{ c.country_name }}</h1></a>
     <p>{{ c.country_description | linebreaksbr | truncatewords:50 }}</p><br><hr><br>
     {% endfor %}
