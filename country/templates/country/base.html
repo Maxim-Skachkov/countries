@@ -1,6 +1,6 @@
 {% load static %}
 {% load country_tags %}
-{% get_menu as menu %}
+
 
 <!--{% get_countries as cntries %}-->
 
@@ -34,7 +34,13 @@
                     {% else %}
                         <li class="not_selected"><b><a class="table-head" href="{% url 'homepage' %}">Все континенты</a></b></li>
                     {% endif %}
-                    {% show_continents cont_id %}
+                    {% for c in conties %}
+                        {% if c.id == cont_id %}
+                          <li><i><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></i></li>
+                        {% else %}
+                          <li><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </td>
             <td class="mt-center">

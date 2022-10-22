@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from country.forms import *
 # Create your views here.
 from country.models import *
+from country.utils import DataMixin
 
 
 # def index(request):
@@ -12,16 +13,15 @@ from country.models import *
 #                }
 #     return render(request, "country/index.html", context)
 
-class SiteHomepage(ListView):
+class SiteHomepage(DataMixin, ListView):
     model = Country
     template_name = 'country/index.html'
     context_object_name = 'cntries'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cont_id'] = 0
-        context['title'] = "Страны всего мира"
-        return context
+        c_def = self.get_user_context(title="Страны всего мира")
+        return context | c_def
 
     def get_queryset(self):
         return Country.objects.filter(is_published=True)
@@ -49,7 +49,7 @@ def contacts(request):
 #                 "cont_id": current_continent.pk,
 #                }
 #     return render(request, "country/conti.html", context)
-class Continent(ListView):
+class Continent(DataMixin, ListView):
     model = Country
     template_name = 'country/conti.html'
     context_object_name = 'countries_list'
@@ -64,8 +64,11 @@ class Continent(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = self.get_current_continent().contitent_name
-        return context
+        c_def = self.get_user_context(
+            title=self.get_current_continent().contitent_name,
+            cont_id=self.get_current_continent().pk
+            )
+        return context | c_def
 
 
 # def curr_country(request, cntry):
@@ -75,7 +78,7 @@ class Continent(ListView):
 #         "current_country": current_country,
 #     }
 #     return render(request, "country/current_country.html", context)
-class ShowCountry(DetailView):
+class ShowCountry(DataMixin, DetailView):
     model = Country
     template_name = 'country/current_country.html'
     slug_url_kwarg = 'cntry'
@@ -84,8 +87,11 @@ class ShowCountry(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = context['current_country']
-        return context
+        c_def = self.get_user_context(
+            title=context['current_country'],
+            cont_id=Country.objects.get(country_slug=self.kwargs['cntry']).country_continent.pk
+        )
+        return context | c_def
 
 
 # def new_article(request):  # Добавление статьи
@@ -100,11 +106,11 @@ class ShowCountry(DetailView):
 #                "form": form,
 #                }
 #     return render(request, "country/new_article.html", context)
-class NewArticle(CreateView):
+class NewArticle(DataMixin, CreateView):
     form_class = AddCountry
     template_name = 'country/new_article.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Добавление статьи'
-        return context
+        c_def = self.get_user_context(title='Добавление статьи')
+        return context | c_def
