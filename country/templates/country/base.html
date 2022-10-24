@@ -35,10 +35,12 @@
                         <li class="not_selected"><b><a class="table-head" href="{% url 'homepage' %}">Все континенты</a></b></li>
                     {% endif %}
                     {% for c in conties %}
-                        {% if c.id == cont_id %}
-                          <li><i><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></i></li>
-                        {% else %}
-                          <li><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></li>
+                        {% if c.country__count > 0 %}
+                            {% if c.id == cont_id %}
+                              <li><i><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></i></li>
+                            {% else %}
+                              <li><a class="table-head" href="{{ c.get_absolute_url }}">{{ c.contitent_name }}</a></li>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -46,6 +48,31 @@
             <td class="mt-center">
                 {% block content %}
                 {% endblock %}
+                {% if page_obj.has_other_pages %}
+                    <nav class="list-pages">
+                        <ul>
+                            {% if page_obj.has_previous %}
+                                <li class="page-num">
+                                    <a href="?page={{ page_obj.previous_page_number }}">&#8592;</a>
+                                </li>
+                            {% endif %}
+                            {% for p in paginator.page_range %}
+                              {% if page_obj.number == p %}
+                                <li class="page-num page-num-selected">{{ p }}</li>
+                              {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                <li class="page-num">
+                                    <a href="?page={{ p }}">{{ p }}</a>
+                                </li>
+                              {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-num">
+                                    <a href="?page={{ page_obj.next_page_number }}">&#8594;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
             </td>
         </tr>
     </table>

@@ -9,6 +9,7 @@ menu_list = [
 ]
 
 class DataMixin:
+    paginate_by = 1
     def get_user_context(self, **kwargs):
         conties = Contitent.objects.all().annotate(Count('country'))
         context = kwargs
