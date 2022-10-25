@@ -23,7 +23,8 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contacts/', contacts, name='contacts'),
     path('country/<slug:cntry>', ShowCountry.as_view(), name='country'),
-    path('new_article', NewArticle.as_view(), name='new_article')
+    path('new_article', NewArticle.as_view(), name='new_article'),
+    path('register', RegisterUser.as_view(), name='register')
 ]
 
 

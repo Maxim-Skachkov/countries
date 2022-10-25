@@ -1,6 +1,10 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
+
+from country import utils
 from country.forms import *
 # Create your views here.
 from country.models import *
@@ -29,12 +33,14 @@ class SiteHomepage(DataMixin, ListView):
 
 def about(request):
     context = {"title": "О сайте",
+               'menu': utils.menu_list
                }
     return render(request, "country/about.html", context)
 
 
 def contacts(request):
     context = {"title": "Наши контакты",
+               'menu': utils.menu_list
                }
     return render(request, "country/contacts.html", context)
 
@@ -114,3 +120,15 @@ class NewArticle(DataMixin, CreateView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Добавление статьи')
         return context | c_def
+
+
+class RegisterUser(DataMixin, CreateView):
+    form_class = RegisterUserForm
+    template_name = 'country/register.html'
+    success_url = reverse_lazy('homepage')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Регистрация')
+        return context | c_def
+

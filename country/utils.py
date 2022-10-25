@@ -6,6 +6,7 @@ menu_list = [
     {'name': "Добавить статью", 'link': 'new_article'},
     {'name': "О сайте", 'link': "about"},
     {'name': "Контакты", 'link': "contacts"},
+    {'name': "Регистрация", 'link': "register"},
 ]
 
 class DataMixin:

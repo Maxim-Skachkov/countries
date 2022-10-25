@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
 from .models import *
@@ -26,3 +27,10 @@ class AddCountry(forms.ModelForm):
 class AddContinent(forms.Form):
     contitent_name = forms.CharField(max_length=50, label='Континент')
     contitent_slug = forms.CharField(max_length=50, label='slug')
+
+
+class RegisterUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
